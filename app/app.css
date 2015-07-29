@@ -28,3 +28,10 @@
   content: "";
   padding: 0;
 }
+
+div[ng-view] {
+  margin-top: 60px;
+}
+form input {
+  margin-bottom: 0.5em;
+}
