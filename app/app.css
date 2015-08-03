@@ -35,3 +35,7 @@ div[ng-view] {
 form input {
   margin-bottom: 0.5em;
 }
+
+ul.nav li.dropdown:hover ul.dropdown-menu {
+  display: block;
+}
