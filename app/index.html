@@ -5,6 +5,7 @@
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <base href="/headless-drupal/app/">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>TrueCredit</title>
   <meta name="description" content="">
@@ -37,10 +38,10 @@
             <span ng-repeat-start="item in navigationItems"></span>
 
             <li ng-if="item['Child Pages'] !== undefined" class="dropdown">
-              <a ng-href="#/content/{{item.Nid}}" role="button" aria-haspopup="true" aria-expanded="false">{{item.title}}<span class="caret"></span></a>
+              <a ng-href="content/{{item.Nid}}" role="button" aria-haspopup="true" aria-expanded="false">{{item.title}}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li ng-repeat="sub_element in item['Child Pages']">
-                  <a ng-href="#/content/{{sub_element.Nid}}">
+                  <a ng-href="content/{{sub_element.Nid}}">
                     {{sub_element.title}}
                   </a>
                 </li>
@@ -78,5 +79,6 @@
   <script src="user_login/user_login.js"></script>
   <script src="main/mainCtrl.js"></script>
   <script src="content/content.js"></script>
+  <script src="services/drupalRouteService.js"></script>
 </body>
 </html>

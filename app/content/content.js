@@ -1,12 +1,15 @@
 'use strict';
 
-angular.module('myApp.content', ['ngRoute'])
+angular.module('myApp.content', ['ng', 'ngRoute'])
 
-    .config(['$routeProvider', function ($routeProvider) {
+    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider.when('/content/:id', {
             templateUrl: 'content/content.html',
             controller: 'ContentCtrl'
         });
+
+        // use the HTML5 History API
+        $locationProvider.html5Mode(true);
     }])
 
     .controller('ContentCtrl', ['$scope', '$routeParams', '$location', '$http', 'drupal', function ($scope, $routeParams, $location, $http, drupal) {
