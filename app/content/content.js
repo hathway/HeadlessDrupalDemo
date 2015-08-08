@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.content', ['ng', 'ngRoute'])
+var app = angular.module('myApp.content', ['ng', 'ngRoute'])
 
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider.when('/content/:id', {

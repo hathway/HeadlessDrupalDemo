@@ -1,9 +1,7 @@
 'use strict';
 
-var hostname = "http://mike-maxwells-mac.local:7888/";
-
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var app = angular.module('myApp', [
     'ng',
     'ngRoute',
     'myApp.version',
@@ -22,7 +20,7 @@ angular.module('myApp', [
 angular.module('angular-drupal')
     .config(function ($provide) {
         $provide.value('drupalSettings', {
-            sitePath: hostname + '/headless-drupal/drupal',
+            sitePath: window.location.origin + '/drupal',
             endpoint: 'api'
         });
     })

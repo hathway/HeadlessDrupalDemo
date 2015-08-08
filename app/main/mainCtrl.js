@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('myApp')
+var app = angular.module('myApp')
     .controller('MainCtrl', ['$scope', '$http', 'drupal', function ($scope, $http, drupal) {
         $scope.content = {};
         $scope.body = "";
 
-        $http.get(hostname + '/headless-drupal/drupal/?q=content-list').
+        $http.get(window.location.origin + '/drupal/?q=content-list').
             success(function(data, status) {
 
                 var nodes = {};
