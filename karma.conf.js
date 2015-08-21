@@ -1,33 +1,49 @@
-module.exports = function(config){
-  config.set({
+// Karma configuration
+module.exports = function(config) {
+    config.set({
+        // base path, that will be used to resolve files and exclude
+        basePath: '',
 
-    basePath : './',
+        // testing framework to use (jasmine/mocha/qunit/...)
+        frameworks: ['jasmine'],
 
-    files : [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/components/**/*.js',
-      'app/view*/**/*.js'
-    ],
+        // list of files / patterns to load in the browser
+        files : [
+            'app/bower_components/angular/angular.js',
+            'app/bower_components/angular-route/angular-route.js',
+            'app/bower_components/angular-mocks/angular-mocks.js',
+            'app/components/**/*.js',
+            'app/main/*.js',
+            'app/services/*.js',
+            'app/user_login/*.js',
+        ],
 
-    autoWatch : true,
+        // list of files / patterns to exclude
+        exclude: [],
 
-    frameworks: ['jasmine'],
+        // web server port
+        port: 8080,
 
-    browsers : ['Chrome'],
+        // level of logging
+        // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
+        logLevel: config.LOG_INFO,
 
-    plugins : [
-            'karma-chrome-launcher',
-            'karma-firefox-launcher',
-            'karma-jasmine',
-            'karma-junit-reporter'
-            ],
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: false,
 
-    junitReporter : {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+        // Start these browsers, currently available:
+        // - Chrome
+        // - ChromeCanary
+        // - Firefox
+        // - Opera
+        // - Safari (only Mac)
+        // - PhantomJS
+        // - IE (only Windows)
+        browsers: ['PhantomJS'],
 
-  });
+
+        // Continuous Integration mode
+        // if true, it capture browsers, run tests and exit
+        singleRun: false
+    });
 };
