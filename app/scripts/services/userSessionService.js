@@ -3,7 +3,7 @@
  */
 
 angular.module('tui')
-    .service('userSessionService', function ($http) {
+    .service('userSessionService', function ($rootScope, $http) {
 
         var service = this;
         var visitToken;
@@ -57,6 +57,15 @@ angular.module('tui')
                 */
         };
 
+        service.performLogout = function() {
+            visitToken = undefined;
+            sessionToken = undefined;
+            service.userData = undefined;
+            service.userInfo = undefined;
+            service.offerInfo = undefined;
+            $rootScope.$broadcast('LoginEvent', false);
+        }
+
         var executeLogin = function(user, pass, callback) {
             var endpoint = "/tucm/mobile/redirect1_0.page";
 
@@ -89,6 +98,8 @@ angular.module('tui')
                     service.userInfo = responseData.ui;
                     service.offerInfo = responseData.oi;
                     callback(responseData);
+
+                    $rootScope.$broadcast('LoginEvent', true);
 
                 /*  COMMENTED OUT FOR LOCAL TESTING PURPOSES!! UNCOMMENT FOR LIVE TESTING
                 },
