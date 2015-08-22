@@ -38,6 +38,7 @@ angular.module('tui.dashboard')
             $state.go('content', {
                 id: node.Nid
             });
+            $scope.toggleSidenav('left');
         };
 
 
