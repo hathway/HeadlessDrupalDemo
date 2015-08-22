@@ -1,85 +1,119 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<!doctype html>
+<html>
 <head>
+  <!--<base href="/app/">-->
   <meta charset="utf-8">
-  <base href="/app/">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TrueCredit</title>
+  <title>TransUnion TrueCredit</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="app.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="bower_components/underscore/underscore-min.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="bower_components/json-formatter/dist/json-formatter.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <!--<link rel="stylesheet" href="styles/main.css">-->
+  <!-- endbuild -->
 </head>
 <body>
 
-  <div ng-controller="MainCtrl">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-          </button>
-          <a class="navbar-brand" href="#">TrueCredit POC</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <span ng-repeat-start="item in navigationItems"></span>
-
-            <li ng-if="item['Child Pages'] !== undefined" class="dropdown">
-              <a ng-href="content/{{item.Nid}}" role="button" aria-haspopup="true" aria-expanded="false">{{item.title}}<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li ng-repeat="sub_element in item['Child Pages']">
-                  <a ng-href="content/{{sub_element.Nid}}">
-                    {{sub_element.title}}
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li ng-if="item['Child Pages'] === undefined">
-              <a ng-href="#/content/{{item.Nid}}">
-                {{item.title}}
-              </a>
-            </li>
-            <span ng-repeat-end></span>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="user/login">Login</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-  </div>
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<div ng-app="tui" ng-controller="MainCtrl">
+  <!--[if lte IE 8]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+  <!-- Collapsable sidenav bar -- this would likely end up in a directive -->
+  <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="false">
+    <md-list>
+      <div ng-repeat="parentItem in navigationItems">
+        <md-subheader ng-click="sidebarNavTouched(parentItem)">
+          {{parentItem.title}}
+        </md-subheader>
 
-  <!--<div>Angular seed app: v<span app-version></span></div>-->
+        <md-item ng-repeat="subItem in parentItem['Child Pages']" ng-click="sidebarNavTouched(subItem)">
+          <a>
+            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+              <div class="inset">
+                <ng-md-icon icon="{{subItem.icon}}"></ng-md-icon>
+              </div>
+              <div class="inset">{{subItem.title}}
+              </div>
+            </md-item-content>
+          </a>
+        </md-item>
+        <md-divider></md-divider>
+      </div>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="../node_modules/angular-drupal/build/angular-drupal.min.js"></script>
-  <script src="app.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
-  <script src="user_login/user_login.js"></script>
-  <script src="main/mainCtrl.js"></script>
-  <script src="content/content.js"></script>
-  <script src="services/drupalRouteService.js"></script>
-  <script src="services/userSessionService.js"></script>
+    </md-list>
+  </md-sidenav>
+
+  <!-- Primary toolbar -->
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleSidenav('left')">
+        <md-icon md-svg-icon="images/menu.svg"></md-icon>
+      </md-button>
+      <span flex></span>
+      <img src="images/logo.png"/>
+      <span flex></span>
+
+      <h2>
+        <span ng-click="loginButtonTouched()">Login</span>
+      </h2>
+    </div>
+  </md-toolbar>
+
+  <!-- Primary viewport -->
+  <div ui-view></div>
+
+</div>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/json-formatter/dist/json-formatter.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/restangular/dist/restangular.js"></script>
+<script src="vendor/angular-drupal.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/tui.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/controllers/newuserform.js"></script>
+<script src="scripts/controllers/loginform.js"></script>
+
+<script src="scripts/dashboard.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/dashboard.js"></script>
+<script src="scripts/controllers/creditscore.js"></script>
+<script src="scripts/controllers/creditreport.js"></script>
+<script src="scripts/controllers/creditscoredetails.js"></script>
+<script src="scripts/controllers/creditscoresummary.js"></script>
+
+<script src="scripts/content.js"></script>
+<script src="scripts/controllers/contentCtrl.js"></script>
+
+<script src="scripts/services/userSessionService.js"></script>
+<script src="scripts/services/drupalContentService.js"></script>
+<!-- endbuild -->
 </body>
 </html>

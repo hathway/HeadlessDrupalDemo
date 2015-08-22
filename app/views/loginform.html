@@ -1,0 +1,30 @@
+<md-content layout-padding style="height: 600px;padding: 24px;">
+  <h2 class="md-display-2">Login</h2>
+  <p class="md-body-1">Welcome to TransUnion TrueCredit! Login with your account here.</p>
+
+  <div ng-controller="LoginCtrl" layout="column">
+
+    <div>
+      <md-content layout-padding>
+        <form name="userForm">
+          <md-input-container flex>
+            <label>Username</label>
+            <input ng-model="user.username">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Password</label>
+            <input ng-model="user.password" type="password">
+          </md-input-container>
+        </form>
+      </md-content>
+    </div>
+  </div>
+
+
+  <div layout="row" layout-align="center center">
+    <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+    <md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
+  </div>
+
+
+</md-content>

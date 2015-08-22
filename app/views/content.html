@@ -1,0 +1,24 @@
+<div ng-controller="ContentCtrl">
+    <!--start hero header area-->
+    <div class="jumbotron" style="background:linear-gradient(
+          rgba(2, 149, 190, 0.3),
+          rgba(2, 149, 190, 0.3)
+        ), url('{{heroImageUrl}}'); background-size:cover;" >
+        <!--<div class="hero-layer">-->
+        <br>
+        <div ng-style="heroImage"></div>
+        <div style="padding-left: 20px;">
+            <h1 style="color: #fdc800;">{{content.title}}</h1>
+            <h3 style="color: white;">{{content.field_subtitle.und[0].value}}</h3>
+        </div>
+        <br>
+        <!--</div>-->
+    </div>
+
+    <md-whiteframe class="md-whiteframe-z1" layout layout-align="center center" style="margin: 20px; padding: 20px;">
+        <div class="container-fluid" ng-style="">
+            <div ng-bind-html="body | html"></div>
+        </div>
+    </md-whiteframe>
+</div>
+<!--end hero header area-->

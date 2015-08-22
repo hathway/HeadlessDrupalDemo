@@ -1,0 +1,58 @@
+<md-content layout-padding style="height: 600px;padding: 24px;">
+  <h2 class="md-display-2">Create User</h2>
+  <p class="md-body-1">Welcome to TransUnion TrueCredit! To get started with your free account, please provide the following information so we can verify your identity.</p>
+
+  <div ng-controller="NewuserformCtrl" layout="column">
+
+    <div>
+      <md-content layout-padding>
+        <form name="userForm">
+          <md-input-container flex>
+            <label>Full Name (First, Last)</label>
+            <input ng-model="user.name">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Email</label>
+            <input ng-model="user.email" type="email">
+          </md-input-container>
+        </form>
+      </md-content>
+    </div>
+
+    <div>
+      <md-content layout-padding>
+        <form name="userForm">
+          <md-input-container flex>
+            <label>Address</label>
+            <input ng-model="user.address">
+          </md-input-container>
+          <md-input-container md-no-float>
+            <input ng-model="user.address2" placeholder="Address 2">
+          </md-input-container>
+          <div layout layout-sm="column">
+            <md-input-container flex>
+              <label>City</label>
+              <input ng-model="user.city">
+            </md-input-container>
+            <md-input-container flex>
+              <label>State</label>
+              <input ng-model="user.state">
+            </md-input-container>
+            <md-input-container flex>
+              <label>Postal Code</label>
+              <input ng-model="user.postalCode">
+            </md-input-container>
+          </div>
+        </form>
+      </md-content>
+    </div>
+  </div>
+
+
+  <div layout="row" layout-align="center center">
+    <md-button class="md-raised md-warn" ng-click="cancel()">Cancel</md-button>
+    <md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
+  </div>
+
+
+</md-content>
